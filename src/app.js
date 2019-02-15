@@ -1,1 +1,2 @@
-document.write('Hello FrescoPlayers');
+let name = require('../name');
+document.write('Hello ' + name.name);
