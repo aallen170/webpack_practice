@@ -1,1 +1,1 @@
-exports.name = ":0";
+exports.name = "XD";
