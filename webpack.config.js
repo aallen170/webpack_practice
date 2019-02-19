@@ -1,10 +1,19 @@
-const path = require('path');
-
+// Nodejs module for absolute path resolving
+var path = require('path');
 module.exports = {
+  //  Entry point of webpack
   entry: './src/app.js',
   output: {
-    filename: '../build.js',
-    path: path.resolve(__dirname, 'dist')
+    // Need to be resolved to absolute path
+    path: path.resolve(__dirname, 'dist'),
+    // bundled/compiled file name
+    filename: './bundle.js',
+    // For webpack dev server to identify the full path.
+    publicPath: '/dist'
   },
-  watch: true
+  watch: true,
+  devServer: {
+    inline: true,
+    port: 8081
+  }
 };
