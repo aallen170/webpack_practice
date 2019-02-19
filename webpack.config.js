@@ -15,5 +15,19 @@ module.exports = {
   devServer: {
     inline: true,
     port: 8081
+  },
+  module: {
+    rules: [
+      { test : /\.css$/, loader: "style-loader!css-loader" },
+      {
+        test: /\.js$/,
+        use: [
+          {
+              loader: 'babel-loader',
+              options: { presets: ['es2015'] }
+          }
+        ]
+      }
+    ]
   }
 };
