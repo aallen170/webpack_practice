@@ -1,32 +1,25 @@
-// Nodejs module for absolute path resolving
 var path = require('path');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
-  //  Entry point of webpack
-  entry: './src/app.js',
-  output: {
-    // Need to be resolved to absolute path
-    path: path.resolve(__dirname, 'dist'),
-    // bundled/compiled file name
-    filename: './bundle.js',
-    // For webpack dev server to identify the full path.
-    publicPath: '/dist'
-  },
-  watch: true,
-  devServer: {
-    inline: true,
-    port: 8081
-  },
-  module: {
-    rules: [
-      { test : /\.css$/, loader: "style-loader!css-loader" },
-      {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        exclude: /node_modules$/,
-        query: {
-          presets: ['es2015']
-        }
-      }
-    ]
-  }
+    entry: './src/app.js',
+    output: {
+         path: path.resolve(__dirname, 'dist'),
+         filename: 'bundle.js'
+    },
+   module: {
+      rules: [
+          { test : /\.css$/, loader: "style-loader!css-loader" },
+          {
+             test: /\.js$/,
+             use: [
+                     {
+                          loader: 'babel-loader',
+                          options: { presets: ['es2015'] }
+                     }
+             ]
+          }
+      ]
+   },
+   plugins: [ new HtmlWebpackPlugin() ]
 };
